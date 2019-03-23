@@ -34,6 +34,15 @@ yarn start
 
 > this application is also **containerized**, can be executed using Docker. Just build the Dockerfile and run the image file.
 
+## test
+
+* this microservice has 100% unit test coverage.
+* also lint test are integrated.
+
+```sh
+yarn test
+```
+
 ## temperature and humidity algorithm
 
 for simplicity, I have divided *earth* into 3 zone (purly fictitious)
