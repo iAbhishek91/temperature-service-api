@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:iAbhishek91/temperature-service-api.git",
   "author": "Abhishek Das <abhi.das2007das@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "config": "^3.0.1"
+  }
 }
