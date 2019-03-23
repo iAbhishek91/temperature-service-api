@@ -8,7 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "test:lint": "eslint src/**",
-    "build": "rm -rf dist && babel src --out-dir dist"
+    "build": "rm -rf dist && babel src --out-dir dist",
+    "start": "npm run build && node dist/server/index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -19,6 +20,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "eslint": "^5.15.3",
