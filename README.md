@@ -6,7 +6,7 @@ service to detect temperature and humidity based on geo position
 
 this microservice is a independent service and do not depend on other service.
 
-## start the app
+## quick start
 
 * install *node* and *yarn*. Install yarn using below command.
 
