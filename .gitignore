@@ -1,6 +1,7 @@
-# Logs
+# Logs and report
 logs
 *.log
+unitTestResult.html
 
 # Dependency directories
 node_modules/
@@ -11,3 +12,5 @@ node_modules/
 # builds
 dist
 
+# jest coverage
+coverage
