@@ -1,5 +1,4 @@
 import express from 'express';
-// import bodyParser from 'body-parser';
 import routerEntry from './routers';
 import logger from './middleware/logger';
 import errorHandler from './middleware/errorHandler';
@@ -10,8 +9,6 @@ const validRoutes = {
 };
 
 app.use(logger);
-
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', routerEntry);
 

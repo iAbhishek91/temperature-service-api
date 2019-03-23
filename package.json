@@ -12,7 +12,6 @@
     "start": "npm run build && node dist/server/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
     "config": "^3.0.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
