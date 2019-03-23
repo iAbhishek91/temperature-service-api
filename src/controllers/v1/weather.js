@@ -5,19 +5,30 @@ import {
   tropicalRegionConstraints,
   arcticRegionConstraints,
   regionBwTropicalAndArcticConstraints,
+  arcticLatitudeRange,
+  tropicalLatitudeRange,
 } from '../../constants';
 import { valueBetween } from '../../util';
 
 export const validateLongitude = longitude => Number(longitude) <= 180 && Number(longitude) >= -180;
 export const validateLatitude = latitude => Number(latitude) <= 90 && Number(latitude) >= -90;
 const calculateClimateRegion = (laitiude) => {
-  if (laitiude <= 20 && laitiude >= -20) {
+  if (
+    laitiude <= tropicalLatitudeRange.range1.max
+    && laitiude >= tropicalLatitudeRange.range1.min
+  ) {
     return tropicalRegionCode;
   }
 
   if (
-    (laitiude >= 45 && laitiude <= 90)
-    || (laitiude >= -90 && laitiude <= -45)
+    (
+      laitiude >= arcticLatitudeRange.range2.min
+      && laitiude <= arcticLatitudeRange.range2.max
+    )
+    || (
+      laitiude >= arcticLatitudeRange.range1.min
+      && laitiude <= arcticLatitudeRange.range1.max
+    )
   ) {
     return arcticRegionCode;
   }
@@ -72,22 +83,35 @@ export const calculateTemperatureHumidity = (longitude, latitude) => {
   return result;
 };
 
-export default (req, res) => {
-  const { longitude, latitude } = req.headers;
+export const deterimineResponse = (longitude, latitude) => {
+  let statusCode = 200;
+  const response = {};
+
   if (
     validateLongitude(longitude)
     && validateLatitude(latitude)
   ) {
     const resBody = calculateTemperatureHumidity(longitude, latitude);
-    let statusCode = 200;
+    statusCode = 200;
 
     if (typeof resBody.error !== 'undefined') statusCode = 400;
 
-    res.status(statusCode).json(resBody);
+    response.status = statusCode;
+    response.json = resBody;
   } else {
-    res.status(400).json({
+    response.status = 400;
+    response.json = {
       error: `Invalid longitude or latitude value.
         Valid values of "LONGITUDE" should be between -180 to 180 and "LATITUDE" should be between -90 and 90`,
-    });
+    };
   }
+
+  return response;
+};
+
+export default (req, res) => {
+  const { longitude, latitude } = req.headers;
+  const { status, json } = deterimineResponse(longitude, latitude);
+  res.status(status);
+  res.json(json);
 };

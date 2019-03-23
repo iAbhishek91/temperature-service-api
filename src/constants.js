@@ -18,3 +18,12 @@ export const regionBwTropicalAndArcticConstraints = {
   temperature: { min: 10, max: 25 },
   humidity: { min: 10, max: 70 },
 };
+
+export const arcticLatitudeRange = {
+  range1: { min: -90, max: -45 },
+  range2: { min: 45, max: 90 },
+};
+
+export const tropicalLatitudeRange = {
+  range1: { min: -20, max: 20 },
+};
