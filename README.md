@@ -1,12 +1,12 @@
-# temperature-service-api
+# Temperature Service
 
 service to detect temperature and humidity based on geo position
 
-## dependencies
+## Dependencies
 
 this microservice is a independent service and do not depend on other service.
 
-## quick start
+## Quick start
 
 * install *node* and *yarn*. Install yarn using below command.
 
@@ -34,7 +34,7 @@ yarn start
 
 > this application is also **containerized**, can be executed using Docker. Just build the Dockerfile and run the image file.
 
-## test
+## Test
 
 * this microservice has 100% unit test coverage.
 * also lint test are integrated.
@@ -43,7 +43,11 @@ yarn start
 yarn test
 ```
 
-## temperature and humidity algorithm
+## API documentation
+
+refer API documentation: `<hosted-domain>/api/v1/docs`
+
+## Temperature and humidity algorithm
 
 for simplicity, I have divided *earth* into 3 zone (purly fictitious)
 
@@ -60,14 +64,14 @@ for simplicity, I have divided *earth* into 3 zone (purly fictitious)
 > If longitude is +ve(east hemisphere)
 > then the above calculated temperature and humidity are increased by 5
 
-### valid values
+### Valid values
 
 * latitude: between -90 and +90
 * longitude: between -180 and +180
 
 > If invalid values are passed the service throws HTTP 400
 
-### example
+### Example
 
 ```js
 latitude = 85.76868; longitude = 120.6876;
