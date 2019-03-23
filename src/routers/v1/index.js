@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import documentRoute from './documentation';
+import errorHandler from '../../middleware/errorHandler';
 
-const v1Route = Router();
+const v1RouteEntry = Router();
+const validRoutes = {
+  docsURI: '/docs',
+};
 
-v1Route.use('/docs', documentRoute);
+v1RouteEntry.use(validRoutes.docsURI, documentRoute);
 
-export default v1Route;
+v1RouteEntry.use(errorHandler(validRoutes));
+
+export default v1RouteEntry;
