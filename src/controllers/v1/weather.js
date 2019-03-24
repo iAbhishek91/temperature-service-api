@@ -10,8 +10,18 @@ import {
 } from '../../constants';
 import { valueBetween } from '../../util';
 
-export const validateLongitude = longitude => Number(longitude) <= 180 && Number(longitude) >= -180;
-export const validateLatitude = latitude => Number(latitude) <= 90 && Number(latitude) >= -90;
+export const validateLongitude = longitude => (
+  longitude
+    ? (Number(longitude) <= 180 && Number(longitude) >= -180)
+    : false
+);
+
+export const validateLatitude = latitude => (
+  latitude
+    ? (Number(latitude) <= 90 && Number(latitude) >= -90)
+    : false
+);
+
 const calculateClimateRegion = (laitiude) => {
   if (
     laitiude <= tropicalLatitudeRange.range1.max

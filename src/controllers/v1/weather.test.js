@@ -87,6 +87,10 @@ describe('weather', () => {
       longitude: '-181',
       expected: false,
     }, {
+      testName: '"" should return "false"',
+      longitude: '',
+      expected: false,
+    }, {
       testName: '-180 should return "true"',
       longitude: '-180',
       expected: true,
@@ -114,48 +118,52 @@ describe('weather', () => {
   describe('validateLatitude', () => {
     [{
       testName: 'string should return "false"',
-      longitude: 'string',
+      latitude: 'string',
       expected: false,
     }, {
       testName: 'symbols should return "false"',
-      longitude: '@£$!@£$',
+      latitude: '@£$!@£$',
       expected: false,
     }, {
       testName: '90.01 should return "false"',
-      longitude: '90.01',
+      latitude: '90.01',
       expected: false,
     }, {
       testName: '91 should return "false"',
-      longitude: '91',
+      latitude: '91',
       expected: false,
     }, {
       testName: '-90.01 should return "false"',
-      longitude: '-90.01',
+      latitude: '-90.01',
       expected: false,
     }, {
       testName: '-91 should return "false"',
-      longitude: '-91',
+      latitude: '-91',
+      expected: false,
+    }, {
+      testName: '"" should return "false"',
+      latitude: '',
       expected: false,
     }, {
       testName: '-90 should return "true"',
-      longitude: '-90',
+      latitude: '-90',
       expected: true,
     }, {
       testName: '90 should return "true"',
-      longitude: '90',
+      latitude: '90',
       expected: true,
     }, {
       testName: '0 should return "true"',
-      longitude: '0',
+      latitude: '0',
       expected: true,
     }, {
       testName: '30 as number should return "true"',
-      longitude: 30,
+      latitude: 30,
       expected: true,
     }].forEach((testCase) => {
       test(`validate ${testCase.testName}`, () => {
         expect(
-          validateLatitude(testCase.longitude),
+          validateLatitude(testCase.latitude),
         ).toBe(testCase.expected);
       });
     });
