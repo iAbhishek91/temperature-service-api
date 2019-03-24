@@ -8,7 +8,7 @@ module.exports = {
       './node_modules/jest-html-reporter',
       {
         pageTitle: 'temperature unit-test result',
-        outputPath: '<rootDir>/unitTestResult.html',
+        outputPath: 'unitTestResult.html',
         includeFailureMsg: true,
         includeConsoleLog: true,
         dateFormat: 'dd-mmm-yy HH:MM:ss',
