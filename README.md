@@ -2,9 +2,12 @@
 
 service to detect temperature and humidity based on geo position
 
-## Dependencies
+## Table of content
 
-this microservice is a independent service and do not depend on other service.
+* [Quick start](#Quick-start)
+* [Test](#Test)
+* [API documentation](#API-documentation)
+* [Temperature and humidity algorithm](#Temperature-and-humidity-algorithm)
 
 ## Quick start
 
