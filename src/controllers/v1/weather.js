@@ -110,7 +110,7 @@ export const deterimineResponse = (longitude, latitude) => {
       aipError = new APIError(
         500,
         'Internal server error',
-        'Exception thrown while determining temerature and humidity.',
+        'Internal server error. Exception thrown while determining temerature and humidity.',
       );
       statusCode = aipError.status;
       resBody = aipError;
@@ -122,7 +122,7 @@ export const deterimineResponse = (longitude, latitude) => {
     aipError = new APIError(
       400,
       'Bad request, probably invalid headers',
-      'longitude or latitude value. Valid values of LONGITUDE should be between -180 to 180 and LATITUDE should be between -90 and 90',
+      'Bad request, probably invalid headers. Longitude or latitude value. Valid values of LONGITUDE should be between -180 to 180 and LATITUDE should be between -90 and 90',
     );
     response.status = aipError.status;
     response.json = aipError;

@@ -13,7 +13,7 @@ app.use(logger);
 
 app.use('/api', routerEntry);
 
-app.use(throwAIPError(404, 'Endpoint not found', `valid URI ${JSON.stringify(validRoutes)}`));
+app.use(throwAIPError(404, 'Endpoint not found', `Endpoint not found. valid URI ${JSON.stringify(validRoutes)}`));
 
 app.use(errorHandler);
 

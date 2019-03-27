@@ -45,7 +45,7 @@ describe('weather', () => {
     test('validate longitude 190 and latitude 98 should return error message', () => {
       const { json } = deterimineResponse(190, 19);
 
-      expect(json.details).toBe('longitude or latitude value. Valid values of LONGITUDE should be between -180 to 180 and LATITUDE should be between -90 and 90');
+      expect(json.details).toBe('Bad request, probably invalid headers. Longitude or latitude value. Valid values of LONGITUDE should be between -180 to 180 and LATITUDE should be between -90 and 90');
     });
 
     test('validate longitude 190 and latitude 98 should not return temperature', () => {
