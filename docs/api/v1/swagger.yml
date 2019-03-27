@@ -1,153 +1,56 @@
 swagger: "2.0"
 info:
-  description: |
-    Determine temperature and humidity based on geo location.
+  description: "A sample API for determining temperature and humidity based on geo location."
   version: 0.0.1
-  title: Temperature API
-basePath: /api/v1
+  title: "Temperature API"
+  contact: 
+    email: "abhi.das2007das@gmail.com"
+host: "localhost:1313"
+basePath: "/api/v1"
 schemes:
-  - http
+  - "http"
 paths:
   /weather:
     get:
-      summary: Calculate temperature and humidity based on latitude and longitude (geo location)
+      tags: 
+        - "weather"
+      summary: "get temperature and humidity"
+      description: "get temperature and humidity based on latitude and longitude"
+      produces: 
+        - "application/JSON"
       parameters:
-        - in: header
-          name: header
+        - in: "header"
+          name: "longitude"
+          type: "integer"
+          maximum: 180
+          minimum: -180
+          description: "longitude of the location"
           required: true
-          schema:
-            $ref: "#/definitions/Request"
+        - in: "header"
+          name: "latitude"
+          type: "integer"
+          maximum: 90
+          minimum: -90
+          description: "latitude of the location"
+          required: true
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/Response"
         "400":
-          description: Invalid input
+          description: Bad request, probably invalid headers
+          schema:
+            $ref: "#/definitions/APIError"
+        "404":
+          description: Endpoint not found
           schema:
             $ref: "#/definitions/APIError"
         "500":
-          description: Internal Server Error
-          schema:
-            $ref: "#/definitions/APIError"
-        "503":
-          description: Service Unavailable
+          description: Internal server error
           schema:
             $ref: "#/definitions/APIError"
 definitions:
-  Request:
-    type: object
-    properties:
-      loan:
-        type: integer
-        minimum: 1
-        example: 200000
-      purchasePrice:
-        type: integer
-        minimum: 1
-        example: 300000
-      adults:
-        type: integer
-        minimum: 1
-        maximum: 2
-        description: The number of adults in the application
-        example: 1
-      dependents:
-        type: integer
-        minimum: 0
-        maximum: 3
-        description: The number of dependents in the application
-        example: 0
-      income:
-        description: Array with the net income data for each applicant
-        type: array
-        minimum: 1
-        maximum: 2
-        items:
-          type: object
-          description: The net income of an applicant
-          properties:
-            basicIncome:
-              type: integer
-              minimum: 1
-              example: 50000
-            overtime:
-              type: integer
-              minimum: 0
-              default: 0
-              example: 0
-            commission:
-              type: integer
-              minimum: 0
-              default: 0
-              example: 0
-            bonus:
-              type: integer
-              minimum: 0
-              default: 0
-              example: 0
-            otherIncome:
-              type: array
-              minimum: 1
-              items:
-                type: integer
-                minimum: 1
-                example: 1000
-          required:
-            - basicIncome
-      multiple:
-        type: boolean
-        description: Do the applicant own more than one property
-        default: false
-        example: false
-      country:
-        type: string
-        description: |
-          Applicant's country to help with the tax calculations. 
-          As of now Scotland has different tax rules from the rest of the UK
-        enum:
-          - UK
-          - Scotland
-        default: UK
-        example: UK
-      dateOfBirth:
-        type: string
-        format: date
-        example: 01/01/1990
-      brand:
-        type: string
-        enum:
-          - Lloyds
-          - Halifax
-        default: Halifax
-        example: Halifax
-      commitments:
-        type: object
-        properties:
-          revolvingCredit:
-            type: array
-            items:
-              type: integer
-              minimum: 1
-              example: 100
-          monthlyLoans:
-            type: array
-            items:
-              type: integer
-              minimum: 1
-              example: 100
-          regularExpenditure:
-            type: array
-            items:
-              type: integer
-              minimum: 1
-              example: 100
-    required:
-      - loan
-      - purchasePrice
-      - adults
-      - dependents
-      - income
   Response:
     type: object
     properties:
@@ -169,13 +72,12 @@ definitions:
     properties:
       status:
         type: integer
+        description: "HTTP status code"
         minimum: 0
         format: int64
-      message:
-        type: string
       details:
-        type: object
-        description: Optional objects with extra details on the error.
+        type: string
+        description: "User extra information."
     required:
       - status
       - message
