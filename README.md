@@ -5,7 +5,8 @@ service to detect temperature and humidity based on geo position
 ## Table of content
 
 * [Quick start](#Quick-start)
-* [Test](#Test)
+* [Unit test](#Unit-test)
+  * [Unit test reports](#Unit-test-reports)
 * [API documentation](#API-documentation)
 * [Temperature and humidity algorithm](#Temperature-and-humidity-algorithm)
 
@@ -35,9 +36,7 @@ yarn
 yarn start
 ```
 
-> this application is also **containerized**, can be executed using Docker. Just build the Dockerfile and run the image file.
-
-## Test
+## Unit test
 
 * this microservice has 100% unit test coverage.
 * also lint test are integrated.
@@ -45,6 +44,13 @@ yarn start
 ```sh
 yarn test
 ```
+
+### Unit test reports
+
+post execution of unit test, following reports are generated.
+
+* **coverage report**: available at `./coverage/Icov-report/index.html`.
+* **unit test report**: avialble at `./unitTestResult.html`
 
 ## API documentation
 

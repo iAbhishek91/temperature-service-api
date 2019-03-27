@@ -8,7 +8,8 @@ import {
   arcticLatitudeRange,
   tropicalLatitudeRange,
 } from '../../constants';
-import { valueBetween } from '../../util';
+import { valueBetween } from '../../util/util';
+import APIError from '../../util/APIError';
 
 export const validateLongitude = longitude => (
   longitude
@@ -96,24 +97,35 @@ export const calculateTemperatureHumidity = (longitude, latitude) => {
 export const deterimineResponse = (longitude, latitude) => {
   let statusCode = 200;
   const response = {};
+  let aipError = {};
 
   if (
     validateLongitude(longitude)
     && validateLatitude(latitude)
   ) {
-    const resBody = calculateTemperatureHumidity(longitude, latitude);
+    let resBody = calculateTemperatureHumidity(longitude, latitude);
     statusCode = 200;
 
-    if (typeof resBody.error !== 'undefined') statusCode = 400;
+    if (typeof resBody.error !== 'undefined') {
+      aipError = new APIError(
+        500,
+        'Internal server error',
+        'Exception thrown while determining temerature and humidity.',
+      );
+      statusCode = aipError.status;
+      resBody = aipError;
+    }
 
     response.status = statusCode;
     response.json = resBody;
   } else {
-    response.status = 400;
-    response.json = {
-      error: `Invalid longitude or latitude value.
-        Valid values of "LONGITUDE" should be between -180 to 180 and "LATITUDE" should be between -90 and 90`,
-    };
+    aipError = new APIError(
+      400,
+      'Bad request, probably invalid headers',
+      'longitude or latitude value. Valid values of LONGITUDE should be between -180 to 180 and LATITUDE should be between -90 and 90',
+    );
+    response.status = aipError.status;
+    response.json = aipError;
   }
 
   return response;
