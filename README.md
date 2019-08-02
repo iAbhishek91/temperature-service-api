@@ -52,6 +52,12 @@ post execution of unit test, following reports are generated.
 * **coverage report**: available at `./coverage/Icov-report/index.html`.
 * **unit test report**: avialble at `./unitTestResult.html`
 
+## Dockerize
+
+```sh
+docker build -t abdas81/temperature-service
+```
+
 ## API documentation
 
 refer API documentation: `<hosted-domain>/api/v1/docs`
